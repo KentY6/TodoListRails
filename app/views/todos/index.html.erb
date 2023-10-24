@@ -9,25 +9,43 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>TodoApp</h1>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h1>TodoApp</h1>
 
-            <form action="/todos" method="POST" class="d-flex">
-                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                <input name="text">
-                <button type="submit" class="btn btn-primary ms-4">
-                    add
-                </button>
-            </form>
+                <!-- 入力フォーム -->
+                <form action="/todos" method="POST" class="d-flex m-4">
+                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                    <input name="text">
+                    <button type="submit" class="btn btn-primary ms-4">
+                        add
+                    </button>
+                </form>
 
-            <div>
-                <% @todos.each do |todo| %>
-                    <div>
-                        <li class="text-danger">
-                            <%= todo.text %>
-                        </li>
-                    </div>
-                <% end %>
+                <!-- リスト -->
+                <div class="col-md-6">
+                    <% @todos.each do |todo| %>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item text-danger m-4">
+                                    <form action="/todos/<%= todo.id %>" method="POST" class="d-flex justify-content-between">
+                                        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                                        <input name="_method" type="hidden" value="delete">
+                                        <div>
+                                            <%= todo.text %>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-secondary ms-4">
+                                                del
+                                            </button>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    <% end %>
+                </div>
             </div>
+
         </div>
     </div>
 </body>
