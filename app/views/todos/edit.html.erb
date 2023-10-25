@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <title>TodoApp</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        <!-- methodをpostにすることでindexに戻れる --!>
+            <form action="/todos/<%= @todo.id %>" method="post" class="d-flex justify-content-center m-4">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <input name="_method" type="hidden" value="patch">
+                <input type="text" name="todo[text]" placeholder="<%= @todo.text %>">
+                <button type="submit" class="btn btn-danger ms-4">更新</button>
+            </form>
+            <div class="text-center">
+                <%= link_to "戻る", todos_path  %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
