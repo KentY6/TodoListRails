@@ -47,6 +47,7 @@ class TodosController < ApplicationController
 
     private
         def todo_params
+            # binding.pry
             params.require(:todo).permit(:text)
         end
 end

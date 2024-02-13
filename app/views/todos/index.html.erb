@@ -15,7 +15,7 @@
                 <!-- 入力フォーム -->
                 <form action="/todos" method="POST" class="d-flex m-4">
                     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                    <input name="text">
+                    <input type="text" name="todo[text]">
                     <button type="submit" class="btn btn-primary ms-4">
                         add
                     </button>
